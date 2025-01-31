@@ -37,6 +37,26 @@ public:
         }
         return ans;
     }
+
+    int characterReplacement2(string s, int k) {
+        unordered_map<char, int> m;
+        int l=0;
+        int ans=0;
+        for(int r=0; r<s.size(); r++) {
+            m[s[r]]++;
+            int maxFreq = 0;
+            for(auto& i : m) {
+                maxFreq = max(maxFreq, i.second);
+            }
+            if((r-l+1) - maxFreq > k) {
+                m[s[l]]--;
+                l++;
+            }
+            ans = max(ans, r-l+1);
+        }
+        return ans;
+    }
+
 };
 int main() {
     string s;
@@ -44,7 +64,7 @@ int main() {
     int k;
     cin >> k;
     Solution sol;
-    int ans = sol.characterReplacement(s, k);
+    int ans = sol.characterReplacement2(s, k);
     cout << "the length of the longest substring containing the same letter is: " << ans;
 
     return 0;
