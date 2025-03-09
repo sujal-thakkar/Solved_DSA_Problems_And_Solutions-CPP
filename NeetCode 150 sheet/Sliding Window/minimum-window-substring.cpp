@@ -6,6 +6,7 @@
 
     The testcases will be generated such that the answer is unique.
 
+//t.c.- O(n), s.c.- O(n)
 #include <bits/stdc++.h>
 using namespace std;
 
