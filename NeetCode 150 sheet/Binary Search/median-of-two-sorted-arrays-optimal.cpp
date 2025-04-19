@@ -12,7 +12,7 @@
     class Solution {
     public:
         double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) { //n1 = [1 5 9 12] n2 = [7 10 18 15]
-            int n1 = nums1.size(), n2 = nums2.size();// 1 5, 7 10 | 9 12, 18 15
+            int n1 = nums1.size(), n2 = nums2.size();
             int n = n1 + n2;
             if(n1 > n2) return findMedianSortedArrays(nums2, nums1);
             int leftEleSize = (n + 1) / 2;
