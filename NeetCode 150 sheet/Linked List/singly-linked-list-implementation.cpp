@@ -73,8 +73,8 @@ Node* deleteHead(Node* head) { // deletes the head of the LL
 }
 
 Node* insertAtTail(Node* head, int ele) { // insert a new node at the end of the LL, making it the new tail
+    if(head == NULL) return new Node(ele);
     Node* newNode = new Node(ele);
-    if(head == NULL) return newNode;
     Node* temp = head;
     while(temp->next) {
         temp = temp->next;
@@ -96,10 +96,7 @@ Node* deleteTail(Node* head) { // deletes the tail of the LL
 
 Node* insertAtKthIdx(Node* head, int k, int ele) { // insert an element at the K-th index of the LL
     if(k < 1) return head;
-    if(k == 1) {
-        Node* newNode = new Node(ele, head);
-        return newNode;
-    }
+    if(k == 1) return new Node(ele);    
     Node* temp = head;
     int i = 1;
     while(temp and i != k-1) {
@@ -108,6 +105,21 @@ Node* insertAtKthIdx(Node* head, int k, int ele) { // insert an element at the K
     }
     if(!temp) return head;
     Node* newNode = new Node(ele, temp->next);
+    temp->next = newNode;
+    return head;
+}
+
+Node* insertBeforeEle(Node* head, int ele, int val) { // inserts a node before a given element in a LL
+    if(head == NULL) return NULL ;
+    if(head->data == ele) {
+        return new Node(val, head);
+    }
+    Node* temp = head;
+    while(temp->next and temp->next->data != ele){
+        temp = temp->next;
+    }
+    if(!temp->next) return head;
+    Node* newNode = new Node(val, temp->next);
     temp->next = newNode;
     return head;
 }
@@ -138,7 +150,7 @@ Node* deleteKthEle(Node* head, int k) { // Deletes the K-th element of the LL if
     return NULL;
 }
 
-Node* deleteTarget(Node* head, int target) { // delete the given target element from the LL, if exist
+Node* deleteTarget(Node* head, int target) { // deletes the given target element from the LL, if exist
     if(head == nullptr) return head;
 
     Node* temp = head;
@@ -164,7 +176,7 @@ Node* deleteTarget(Node* head, int target) { // delete the given target element 
 
 int main() {
     vector<int> arr = {5,6,2,26,62,22};
-    vector<int> arr2 = {2};
+    vector<int> arr2 = {};
 
     Node* head = arrToLL(arr);
     // if(checkIfPresent(head, 62)) cout << "present";
@@ -174,8 +186,9 @@ int main() {
     // head = deleteKthEle(head, 1);
     // head = deleteTarget(head, 1);
     // head = insertAtHead(head, 58);
-    // head = insertAtTail(head, 87);
-    // head = insertAtKthIdx(head, 6, 99);
+    // head = insertAtTail(head, 87); 
+    // head = insertAtKthIdx(head, 1, 99);
+    head = insertBeforeEle(head, 25, 69);
     printLL(head);
 
     return 0;
