@@ -52,7 +52,7 @@ public:
         return p;
     }
 
-    ListNode* reverseListRecursive(ListNode* head) { // recursive
+    ListNode* reverseListRecursive(ListNode* head) { // recursive:
         if(!head or !head->next) return head;
 
         ListNode* newHead = reverseListRecursive(head->next);
