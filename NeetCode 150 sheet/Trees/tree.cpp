@@ -12,8 +12,7 @@ public:
     }
 };
 
-int idx = -1;
-Node* createTree(vector<int> preorder_seq) {
+Node* createTree(vector<int> preorder_seq, int idx = -1) {
     idx++;
     if(preorder_seq[idx] == -1) return NULL;
     Node* root = new Node(preorder_seq[idx]);
