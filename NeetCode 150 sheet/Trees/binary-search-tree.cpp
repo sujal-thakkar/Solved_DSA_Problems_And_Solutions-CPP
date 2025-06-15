@@ -16,7 +16,8 @@ Node* insert(Node* root, int val) {
     if(!root) return new Node(val);
 
     if(val < root->val) root->left = insert(root->left, val);
-else root->right = insert(root->right, val);
+    else root->right = insert(root->right, val);
+
     return root;
 }
 
@@ -37,10 +38,20 @@ void printBST(Node* root) {
     printBST(root->right);
 }
 
+bool searchBST(Node* root, int tar) {
+    if(!root) return false;
+    if(root->val == tar) return true;
+    else if(root->val > tar) searchBST(root->left, tar);
+    else searchBST(root->right, tar);
+}
+
 int main() {
     vector<int> v = {5,8,6,3,1,9,14};
     Node* root = createBST(v);
-    printBST(root);
+    printBST(root); cout << endl;
+    bool isPresent = searchBST(root, 65);
+    if(isPresent) cout << "present";
+    else cout << "not present";
  
     return 0;
 }
